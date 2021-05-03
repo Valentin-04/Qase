@@ -4,6 +4,8 @@ import models.Project;
 import org.openqa.selenium.WebDriver;
 import pages.ProjectsPage;
 
+import static org.testng.Assert.assertTrue;
+
 public class ProjectSteps {
     ProjectsPage projectsPage;
     WebDriver driver;
@@ -16,7 +18,16 @@ public class ProjectSteps {
     public ProjectSteps createNewProject(Project project) {
         projectsPage
                 .openProjectsPage()
-                .createProject(project);
+                .createProject(project)
+                .backToProjectPage();
+        assertTrue(projectsPage.verifyCreatedProject(project));
+        return this;
+    }
+
+    public ProjectSteps deleteCreatedProject() {
+        projectsPage
+                .openProjectsPage()
+                .deleteProject();
         return this;
     }
 }
