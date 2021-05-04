@@ -28,6 +28,7 @@ public class LoginPage extends BasePage {
         return new ProjectsPage(driver);
     }
 
+    //TODO добавить логирование
     public LoginPage isLoginPageOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
