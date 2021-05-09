@@ -1,12 +1,13 @@
 package tests;
 
 import models.Project;
+import models.Suite;
 import org.testng.annotations.Test;
 
-public class CreateSuiteTest extends BaseTest {
+public class CreateFirstSuiteTest extends BaseTest {
 
     @Test
-    public void createSuite() {
+    public void createFirstSuite() {
         loginSteps.login(EMAIL, PASSWORD);
         project = Project.builder()
                 .projectName(faker.funnyName().name())
@@ -14,6 +15,11 @@ public class CreateSuiteTest extends BaseTest {
                 .description(faker.hobbit().location())
                 .build();
         projectSteps.createNewProject(project);
-
+        suite = Suite.builder()
+                .suiteName(faker.funnyName().name())
+                .description(faker.hobbit().location())
+                .preconditions(faker.hobbit().location())
+                .build();
+        suiteSteps.createFirstSuiteInProject(suite, project);
     }
 }

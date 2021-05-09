@@ -1,6 +1,5 @@
 package wrappers;
 
-import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -17,6 +16,6 @@ public class DropDown {
 
     public void select(String text) {
         driver.findElement(By.xpath(String.format(locator, label))).click();
-        driver.findElement(By.xpath(String.format(option, text))).click();;
+        driver.findElement(By.xpath(String.format(option, text))).click();
     }
 }

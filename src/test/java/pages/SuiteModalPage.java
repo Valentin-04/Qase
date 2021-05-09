@@ -29,6 +29,16 @@ public class SuiteModalPage extends BasePage {
         return this;
     }
 
+    public SuiteModalPage fillFirstSuiteForm(Suite suite) {
+        isSuiteModalOpened();
+        driver.findElement(SUITE_NAME_INPUT).sendKeys(suite.getSuiteName());
+        driver.findElement(DESCRIPTION_INPUT).click();
+        driver.findElement(DESCRIPTION_INPUT).sendKeys(suite.getDescription());
+        driver.findElement(PRECONDITIONS_INPUT).click();
+        driver.findElement(PRECONDITIONS_INPUT).sendKeys(suite.getPreconditions());
+        return this;
+    }
+
     public TestRepositoryPage clickCreateSuiteButton() {
         driver.findElement(CREATE_SUITE_BUTTON).click();
         return new TestRepositoryPage(driver);

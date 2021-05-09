@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Tests" parallel="classes" thread-count="2">
+    <test name="Smoke tests">
+        <classes>
+            <class name="tests.AuthorizationTest"/>
+            <class name="tests.CreateProjectTest"/>
+            <class name="tests.CreateFirstSuiteTest"/>
+            <class name="tests.DeleteSuiteTest"/>
+            <class name="tests.CreateTestCaseTest"/>
+            <class name="tests.DeleteTestCaseTest"/>
+            <class name="tests.DeleteProjectTest"/>
+            <class name="tests.DeleteAllProjectsTest"/>
+        </classes>
+    </test>
+</suite>

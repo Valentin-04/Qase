@@ -2,21 +2,10 @@ package utils;
 
 import org.openqa.selenium.chrome.ChromeOptions;
 
-//@Log4j2
 public class CapabilitiesGenerator {
 
     public static ChromeOptions getChromeOptions() {
-        String driverPath = "src/test/resources";
         ChromeOptions options = new ChromeOptions();
-        String os = System.getProperty("os.name").toLowerCase();
-        //log.debug("Operational system: " + os + "; Driver path: " + driverPath);
-        if (os.contains("win")) {
-            System.setProperty("webdriver.chrome.driver", driverPath + "/chromedriver.exe");
-        } else if (os.contains("mac")) {
-            System.setProperty("webdriver.chrome.driver", driverPath + "/chromedriver");
-        } else {
-            System.setProperty("webdriver.chrome.driver", driverPath + "/chromedriver");
-        }
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-popup-blocking");
         options.addArguments("--disable-notifications");
