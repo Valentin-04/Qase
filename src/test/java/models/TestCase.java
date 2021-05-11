@@ -17,7 +17,8 @@ public class TestCase {
     String severity;
     String priority;
     String type;
-    String milestone;
+    String layer;
+    String isFlaky;
     String behavior;
     String automationStatus;
     String preConditions;

@@ -20,7 +20,7 @@ public class ProjectsPage extends BasePage {
     private static final By INPUT_PROJECT_CODE = By.name("code");
     private static final By TEXTAREA_DESCRIPTION = By.name("description");
     private static final By CREATE_PROJECT_BUTTON = By.xpath("//*[text()='Create project']");
-    List<WebElement> listOfProjectsNames = driver.findElements(NAME_OF_PROJECT);
+    //List<WebElement> listOfProjectsNames = driver.findElements(NAME_OF_PROJECT);
 
     public ProjectsPage(WebDriver driver) {
         super(driver);
@@ -35,6 +35,7 @@ public class ProjectsPage extends BasePage {
     public TestRepositoryPage createProject(Project project) {
         driver.findElement(CREATE_NEW_PROJECT_BUTTON).click();
         isProjectPageOpened(CREATE_PROJECT_BUTTON);
+
         driver.findElement(INPUT_PROJECT_NAME).sendKeys(project.getProjectName());
         driver.findElement(INPUT_PROJECT_CODE).sendKeys(project.getProjectCode());
         driver.findElement(TEXTAREA_DESCRIPTION).sendKeys(project.getDescription());
@@ -47,6 +48,18 @@ public class ProjectsPage extends BasePage {
         driver.findElement(By.xpath(String.format(PROJECT_DELETE_BUTTON, getProjectName()))).click();
         isProjectPageOpened(CONFIRM_DELETE_BUTTON);
         driver.findElement(CONFIRM_DELETE_BUTTON).click();
+        isProjectPageOpened(CREATE_NEW_PROJECT_BUTTON);
+        return this;
+    }
+
+    public ProjectsPage deleteAllProjects() {
+        List<WebElement> listOfProjectsNames = driver.findElements(NAME_OF_PROJECT);
+        for (int i = listOfProjectsNames.size() - 1; i >= 0; i--) {
+            driver.findElement(By.xpath(String.format(DROPDOWN_MENU_OF_PROJECT, getProjectName()))).click();
+            driver.findElement(By.xpath(String.format(PROJECT_DELETE_BUTTON, getProjectName()))).click();
+            isProjectPageOpened(CONFIRM_DELETE_BUTTON);
+            driver.findElement(CONFIRM_DELETE_BUTTON).click();
+        }
         isProjectPageOpened(CREATE_NEW_PROJECT_BUTTON);
         return this;
     }

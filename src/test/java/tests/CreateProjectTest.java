@@ -13,6 +13,8 @@ public class CreateProjectTest extends BaseTest {
                 .projectCode(faker.hacker().abbreviation())
                 .description(faker.hobbit().location())
                 .build();
-        projectSteps.createNewProject(project);
+        projectSteps
+                .createNewProject(project)
+                .verifyProject(project);
     }
 }
