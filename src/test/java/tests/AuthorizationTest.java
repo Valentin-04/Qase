@@ -4,8 +4,8 @@ import org.testng.annotations.Test;
 
 public class AuthorizationTest extends BaseTest {
 
-    @Test
+    @Test(description = "User authorization")
     public void login() {
-        loginSteps.login(EMAIL, PASSWORD);
+        loginSteps.login(login, password);
     }
 }

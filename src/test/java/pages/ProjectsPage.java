@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import models.Project;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -20,22 +21,22 @@ public class ProjectsPage extends BasePage {
     private static final By INPUT_PROJECT_CODE = By.name("code");
     private static final By TEXTAREA_DESCRIPTION = By.name("description");
     private static final By CREATE_PROJECT_BUTTON = By.xpath("//*[text()='Create project']");
-    //List<WebElement> listOfProjectsNames = driver.findElements(NAME_OF_PROJECT);
 
     public ProjectsPage(WebDriver driver) {
         super(driver);
     }
 
+    @Step("Open projects page")
     public ProjectsPage openProjectsPage() {
         driver.get(URL + "/projects");
         isProjectPageOpened(CREATE_NEW_PROJECT_BUTTON);
         return this;
     }
 
+    @Step("Open the page with the project creation form and fill in the fields")
     public TestRepositoryPage createProject(Project project) {
         driver.findElement(CREATE_NEW_PROJECT_BUTTON).click();
         isProjectPageOpened(CREATE_PROJECT_BUTTON);
-
         driver.findElement(INPUT_PROJECT_NAME).sendKeys(project.getProjectName());
         driver.findElement(INPUT_PROJECT_CODE).sendKeys(project.getProjectCode());
         driver.findElement(TEXTAREA_DESCRIPTION).sendKeys(project.getDescription());
@@ -43,6 +44,7 @@ public class ProjectsPage extends BasePage {
         return new TestRepositoryPage(driver);
     }
 
+    @Step("Delete a project'")
     public ProjectsPage deleteProject() {
         driver.findElement(By.xpath(String.format(DROPDOWN_MENU_OF_PROJECT, getProjectName()))).click();
         driver.findElement(By.xpath(String.format(PROJECT_DELETE_BUTTON, getProjectName()))).click();
@@ -80,6 +82,7 @@ public class ProjectsPage extends BasePage {
         return this;
     }
 
+    @Step("Authorization check")
     public boolean verifyLogin() {
         boolean open = false;
         open = driver.findElement(CREATE_NEW_PROJECT_BUTTON).isDisplayed();

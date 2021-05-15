@@ -3,10 +3,11 @@ package tests;
 import models.Project;
 import models.Suite;
 import org.testng.annotations.Test;
+import utils.Retry;
 
 public class CreateFirstSuiteTest extends BaseTest {
 
-    @Test
+    @Test(retryAnalyzer = Retry.class, description = "Create the first suite in the project")
     public void createFirstSuite() {
         loginSteps.login(EMAIL, PASSWORD);
         project = Project.builder()

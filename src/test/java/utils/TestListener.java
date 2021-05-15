@@ -1,5 +1,6 @@
 package utils;
 
+import io.qameta.allure.Attachment;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.OutputType;
@@ -37,7 +38,7 @@ public class TestListener implements ITestListener {
         takeScreenshot(iTestResult.getTestContext());
     }
 
-    //@Attachment(value = "Last screen state", type = "image/png")
+    @Attachment(value = "Last screen state", type = "image/png")
     private byte[] takeScreenshot(ITestContext iTestContext) {
         try {
             return ((TakesScreenshot) iTestContext.getAttribute("browser")).getScreenshotAs(OutputType.BYTES);

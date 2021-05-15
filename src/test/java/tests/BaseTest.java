@@ -23,6 +23,8 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
     public static final String EMAIL = System.getenv("email");
     public static final String PASSWORD = System.getenv("password");
+    public String login = "wade.watts@mozej.com";
+    public String password = "qasetest";
     public LoginSteps loginSteps;
     public ProjectSteps projectSteps;
     public SuiteSteps suiteSteps;
@@ -33,10 +35,10 @@ public class BaseTest {
     Suite suite;
     TestCase testCase;
 
-    @BeforeMethod
+    @BeforeMethod(description = "Opening browser")
     public void setup(ITestContext context) {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();//CapabilitiesGenerator.getChromeOptions()
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         loginSteps = new LoginSteps(driver);
@@ -50,7 +52,7 @@ public class BaseTest {
         context.setAttribute("browser", driver);
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(alwaysRun = true, description = "Closer browser")
     public void tearDown() {
         if (driver != null) {
             driver.quit();

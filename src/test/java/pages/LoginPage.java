@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -15,12 +16,14 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
+    @Step("Open login page")
     public LoginPage open() {
         driver.get(URL + "/login");
         isLoginPageOpened();
         return this;
     }
 
+    @Step("Fill in the authorization form")
     public ProjectsPage login(String login, String password) {
         driver.findElement(LOGIN_INPUT).sendKeys(login);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
@@ -28,7 +31,6 @@ public class LoginPage extends BasePage {
         return new ProjectsPage(driver);
     }
 
-    //TODO добавить логирование
     public LoginPage isLoginPageOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));

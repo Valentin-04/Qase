@@ -2,10 +2,11 @@ package tests;
 
 import models.Project;
 import org.testng.annotations.Test;
+import utils.Retry;
 
 public class CreateProjectTest extends BaseTest {
 
-    @Test
+    @Test(retryAnalyzer = Retry.class, description = "Create a project")
     public void createProject() {
         loginSteps.login(EMAIL, PASSWORD);
         project = Project.builder()

@@ -1,5 +1,6 @@
 package steps;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 import pages.ProjectsPage;
@@ -17,6 +18,7 @@ public class LoginSteps {
         projectsPage = new ProjectsPage(driver);
     }
 
+    @Step("Authorization step")
     public LoginSteps login(String email, String password) {
         loginPage
                 .open()
