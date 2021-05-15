@@ -23,8 +23,6 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
     public static final String EMAIL = System.getenv("email");
     public static final String PASSWORD = System.getenv("password");
-    public String login = "wade.watts@mozej.com";
-    public String password = "qasetest";
     public LoginSteps loginSteps;
     public ProjectSteps projectSteps;
     public SuiteSteps suiteSteps;

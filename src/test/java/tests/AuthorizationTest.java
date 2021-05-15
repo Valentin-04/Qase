@@ -6,6 +6,6 @@ public class AuthorizationTest extends BaseTest {
 
     @Test(description = "User authorization")
     public void login() {
-        loginSteps.login(login, password);
+        loginSteps.login(EMAIL, PASSWORD);
     }
 }
