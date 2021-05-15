@@ -14,8 +14,8 @@ import java.util.List;
 public class ProjectsPage extends BasePage {
     private static final By CREATE_NEW_PROJECT_BUTTON = By.id("createButton");
     private static final By NAME_OF_PROJECT = By.className("defect-title");
-    private static final String DROPDOWN_MENU_OF_PROJECT = "//*[contains(text(),'%s')]/ancestor::tr//a[contains(@class,'btn-dropdown')]";
-    private static final String PROJECT_DELETE_BUTTON = "//*[contains(text(),'%s')]/ancestor::tr//a[contains(@class,'btn-dropdown')]/following::a[contains(@class,'text-danger')]";
+    private static final String DROPDOWN_MENU_OF_PROJECT = "//*[contains(text(),\"%s\")]/ancestor::tr//a[contains(@class,'btn-dropdown')]";
+    private static final String PROJECT_DELETE_BUTTON = "//*[contains(text(),\"%s\")]/ancestor::tr//a[contains(@class,'btn-dropdown')]/following::a[contains(@class,'text-danger')]";
     private static final By CONFIRM_DELETE_BUTTON = By.className("btn-cancel");
     private static final By INPUT_PROJECT_NAME = By.name("title");
     private static final By INPUT_PROJECT_CODE = By.name("code");
