@@ -1,5 +1,6 @@
 package steps;
 
+import io.qameta.allure.Step;
 import models.Project;
 import org.openqa.selenium.WebDriver;
 import pages.ProjectsPage;
@@ -18,6 +19,7 @@ public class ProjectSteps {
         testRepositoryPage = new TestRepositoryPage(driver);
     }
 
+
     public ProjectSteps createNewProject(Project project) {
         projectsPage
                 .openProjectsPage()
@@ -25,12 +27,14 @@ public class ProjectSteps {
         return this;
     }
 
+
     public ProjectSteps verifyProject(Project project) {
         testRepositoryPage.backToProjectPage();
         assertTrue(projectsPage.verifyCreatedProject(project));
         return this;
     }
 
+    @Step("Delete project")
     public ProjectSteps deleteCreatedProject() {
         projectsPage
                 .openProjectsPage()
@@ -38,6 +42,7 @@ public class ProjectSteps {
         return this;
     }
 
+    @Step("Delete all previously created projects")
     public ProjectSteps deleteAllCreatedProject() {
         projectsPage
                 .openProjectsPage()

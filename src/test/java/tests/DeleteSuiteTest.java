@@ -3,10 +3,11 @@ package tests;
 import models.Project;
 import models.Suite;
 import org.testng.annotations.Test;
+import utils.Retry;
 
 public class DeleteSuiteTest extends BaseTest {
 
-    @Test
+    @Test(retryAnalyzer = Retry.class, description = "Remove suite from project")
     public void deleteCreatedSuite() {
         loginSteps.login(EMAIL, PASSWORD);
         project = Project.builder()

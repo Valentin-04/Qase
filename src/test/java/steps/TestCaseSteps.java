@@ -1,5 +1,7 @@
 package steps;
 
+import io.qameta.allure.Step;
+import models.Suite;
 import models.TestCase;
 import org.openqa.selenium.WebDriver;
 import pages.TestRepositoryPage;
@@ -15,14 +17,21 @@ public class TestCaseSteps {
         testRepositoryPage = new TestRepositoryPage(driver);
     }
 
-    public TestCaseSteps createTestCase(TestCase testCase) {
+    @Step("Create a test case")
+    public TestCaseSteps createTestCase(TestCase testCase, Suite suite) {
         testRepositoryPage
                 .openTestCasePage()
-                .fillTestCaseForm(testCase);
+                .fillTestCaseForm(testCase, suite);
+        return this;
+    }
+
+    @Step("Check the creation of a test case")
+    public TestCaseSteps verifyCreatedCase(TestCase testCase) {
         assertTrue(testRepositoryPage.verifyCreatedTestCase(testCase));
         return this;
     }
 
+    @Step("Delete created test case")
     public TestCaseSteps deleteTestCase(TestCase testCase) {
         testRepositoryPage.deleteTestCase();
         return this;

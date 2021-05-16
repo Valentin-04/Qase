@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import models.Project;
 import models.Suite;
 import models.TestCase;
@@ -29,16 +30,19 @@ public class TestRepositoryPage extends BasePage {
         super(driver);
     }
 
+    @Step("Open a modal window to create a suite")
     public SuiteModalPage openFirstSuiteModalWindow() {
         driver.findElement(CREATE_FIRST_SUITE).click();
         return new SuiteModalPage(driver);
     }
 
+    @Step("Open a modal window to create a suite")
     public SuiteModalPage openSuiteModalWindow() {
         driver.findElement(CREATE_SUITE_BUTTON).click();
         return new SuiteModalPage(driver);
     }
 
+    @Step("Deleting a suite")
     public TestRepositoryPage deleteSuite() {
         List<WebElement> listOfSuites = driver.findElements(SUITE_TITLE);
         driver.findElement(By.xpath(String.format(DELETE_SUITE_BUTTON, listOfSuites.get(0).getText()))).click();
@@ -46,6 +50,7 @@ public class TestRepositoryPage extends BasePage {
         return this;
     }
 
+    @Step("Checking the created suite")
     public boolean verifyCreatedSuite(Suite suite) {
         boolean created = false;
         List<WebElement> listOfSuites = driver.findElements(SUITE_TITLE);
@@ -61,11 +66,13 @@ public class TestRepositoryPage extends BasePage {
         return created;
     }
 
+    @Step("Open the test case creation page")
     public TestCasePage openTestCasePage() {
         driver.findElement(CREATE_CASE_BUTTON).click();
         return new TestCasePage(driver);
     }
 
+    @Step("Deleting the first test case in the list")
     public TestRepositoryPage deleteTestCase() {
         List<WebElement> listOfCasesNames = driver.findElements(TEST_CASE_NAME);
         driver.findElement(By.xpath(String.format(CASE_NAME_FOR_CLICK, listOfCasesNames.get(0).getText()))).click();
@@ -89,6 +96,7 @@ public class TestRepositoryPage extends BasePage {
         return created;
     }
 
+    @Step("Return to the projects page from the test repository page")
     public ProjectsPage backToProjectPage() {
         driver.findElement(PROJECT_MENU_BUTTON).click();
         return new ProjectsPage(driver);

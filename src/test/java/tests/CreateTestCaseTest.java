@@ -4,10 +4,11 @@ import models.Project;
 import models.Suite;
 import models.TestCase;
 import org.testng.annotations.Test;
+import utils.Retry;
 
 public class CreateTestCaseTest extends BaseTest {
 
-    @Test
+    @Test(retryAnalyzer = Retry.class, description = "Create a test case")
     public void createTestCase() {
         loginSteps.login(EMAIL, PASSWORD);
         project = Project.builder()
@@ -30,16 +31,13 @@ public class CreateTestCaseTest extends BaseTest {
                 .severity("Major")
                 .priority("High")
                 .type("Smoke")
-                .layer("E2E")
-                .isFlaky("No")
                 .behavior("Positive")
                 .automationStatus("Automated")
                 .preConditions(faker.beer().name())
                 .postConditions(faker.book().title())
-                .action(faker.chuckNorris().fact())
-                .inputData(faker.business().creditCardNumber())
-                .expectedResult(faker.food().dish())
                 .build();
-        testCaseSteps.createTestCase(testCase);
+        testCaseSteps
+                .createTestCase(testCase, suite)
+                .verifyCreatedCase(testCase);
     }
 }

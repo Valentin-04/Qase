@@ -4,10 +4,11 @@ import models.Project;
 import models.Suite;
 import models.TestCase;
 import org.testng.annotations.Test;
+import utils.Retry;
 
 public class DeleteTestCaseTest extends BaseTest {
 
-    @Test
+    @Test(retryAnalyzer = Retry.class, description = "Delete the first test case in the list")
     public void deleteTestCase() {
         loginSteps.login(EMAIL, PASSWORD);
         project = Project.builder()
@@ -30,18 +31,14 @@ public class DeleteTestCaseTest extends BaseTest {
                 .severity("Major")
                 .priority("High")
                 .type("Smoke")
-                .layer("E2E")
-                .isFlaky("No")
                 .behavior("Positive")
                 .automationStatus("Automated")
                 .preConditions(faker.beer().name())
                 .postConditions(faker.book().title())
-                .action(faker.chuckNorris().fact())
-                .inputData(faker.business().creditCardNumber())
-                .expectedResult(faker.food().dish())
                 .build();
         testCaseSteps
-                .createTestCase(testCase)
+                .createTestCase(testCase, suite)
+                .verifyCreatedCase(testCase)
                 .deleteTestCase(testCase);
     }
 }

@@ -33,10 +33,10 @@ public class BaseTest {
     Suite suite;
     TestCase testCase;
 
-    @BeforeMethod
+    @BeforeMethod(description = "Opening browser")
     public void setup(ITestContext context) {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();//CapabilitiesGenerator.getChromeOptions()
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         loginSteps = new LoginSteps(driver);
@@ -50,7 +50,7 @@ public class BaseTest {
         context.setAttribute("browser", driver);
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(alwaysRun = true, description = "Closer browser")
     public void tearDown() {
         if (driver != null) {
             driver.quit();

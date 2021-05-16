@@ -1,5 +1,6 @@
 package steps;
 
+import io.qameta.allure.Step;
 import models.Project;
 import models.Suite;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +19,7 @@ public class SuiteSteps {
         testRepositoryPage = new TestRepositoryPage(driver);
     }
 
+    @Step("Create a new test suite")
     public SuiteSteps createFirstSuiteInProject(Suite suite, Project project) {
         testRepositoryPage
                 .verifyTestRepositoryOpened(project)
@@ -30,18 +32,7 @@ public class SuiteSteps {
         return this;
     }
 
-    public SuiteSteps createNewSuite(Suite suite, Project project) {
-        testRepositoryPage
-                .verifyTestRepositoryOpened(project)
-                .openSuiteModalWindow();
-        suiteModalPage
-                .isSuiteModalOpened()
-                .fillSuiteForm(suite)
-                .clickCreateSuiteButton();
-        testRepositoryPage.verifyCreatedSuite(suite);
-        return this;
-    }
-
+    @Step("Delete created test suite")
     public SuiteSteps deleteSuite() {
         testRepositoryPage.deleteSuite();
         return this;
